@@ -1,0 +1,21 @@
+# cart_transform_run.graphql
+query CartTransformRunInput {
+  cart {
+    lines {
+      id
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          # The bundle mapping lives on the VARIANT:
+          bundleRefs: metafield(namespace: "custom", key: "component_reference") {
+            type
+            value
+            jsonValue
+          }
+        }
+      }
+    }
+  }
+}

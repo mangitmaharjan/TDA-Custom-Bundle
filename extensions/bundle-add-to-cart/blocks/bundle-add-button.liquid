@@ -1,0 +1,50 @@
+<style>
+.bundle-add-button {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-height:44px; padding:0 16px; border:1px solid #000; background:#000; color:#fff; cursor:pointer;
+}
+.bundle-add-button[disabled] { opacity:.6; cursor:default; }
+.bundle-add-button__status { display:inline-block; margin-left:10px; font-size:0.9em; }
+product-form.product-form,
+.product-form__quantity {
+    display: none!important;
+}
+</style>
+
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- assign comp = variant.metafields.custom.component_reference -%}
+{%- if comp and comp.value -%}
+  <div class="bundle-add-button__wrapper" data-app="bundle-add-button">
+    <button
+      type="button"
+      id="bundle-add-btn-{{ block.id }}"
+      class="bundle-add-button"
+      data-variant-ids="{{ comp.value | map: 'id' | join: ',' }}"
+      data-parent-qty-selector="[name='quantity']"
+      data-redirect="true"
+    >
+      {{ block.settings.button_label | default: 'Add components to cart' }}
+    </button>
+
+    <span class="bundle-add-button__status" aria-live="polite" hidden></span>
+  </div>
+
+  {% comment %} Load the script once per page {% endcomment %}
+  {% if request.design_mode or content_for_header contains 'bundle-add-button.js' %}
+  {% else %}
+    <script src="{{ 'bundle-add-button.js' | asset_url }}" defer></script>
+  {% endif %}
+{%- else -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bundle add button",
+  "target": "section",
+  "templates": ["product"],
+  "settings": [
+    { "type": "text", "id": "button_label", "label": "Button text", "default": "Add components to cart" },
+  ]
+}
+{% endschema %}
+
