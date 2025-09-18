@@ -2,7 +2,7 @@
 
 client_id = "5bdc04f1757df6ba176ffaffcb0f6989"
 name = "Custom Bundle"
-application_url = "https://baker-quarters-cultural-allow.trycloudflare.com"
+application_url = "https://pool-disclaimers-hiking-serving.trycloudflare.com"
 embedded = true
 handle = "custom-bundle-23"
 
@@ -27,7 +27,7 @@ scopes = "read_products,write_products,write_cart_transforms,write_publications"
 
 
 [auth]
-redirect_urls = ["https://baker-quarters-cultural-allow.trycloudflare.com/auth/callback", "https://baker-quarters-cultural-allow.trycloudflare.com/auth/shopify/callback", "https://baker-quarters-cultural-allow.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://pool-disclaimers-hiking-serving.trycloudflare.com/auth/callback", "https://pool-disclaimers-hiking-serving.trycloudflare.com/auth/shopify/callback", "https://pool-disclaimers-hiking-serving.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = false
